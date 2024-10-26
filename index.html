@@ -1,0 +1,61 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextEra Development</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .company-name {
+        }
+        .navbar-custom {
+            background-color: #564CC0;
+            width: 100%;
+            border-radius: 50px; /* Adjust this value as needed */
+            padding: 10px 20px; /* Adjust padding to fit the new shape */
+            position: absolute;
+        }
+        body {
+            background-color: #BEABE0; /* Set background color */
+        }
+        .logo {
+            position: absolute;
+            width: 783px;
+            height: 762px;
+            left: -38px;
+            top: 21px;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+<div class="navbar navbar-custom flex justify-between items-center shadow-md relative z-50">
+    <div class="company-name">
+        <img id="companyNameImg" src="assets/svgs/nexteranametop.svg" alt="NextEra Development" class="w-40 h-auto">
+    </div>
+    <div class="flex items-center">
+        <div class="hamburger cursor-pointer z-50" id="hamburger">
+            <img src="assets/svgs/hamburger.svg" alt="Hamburger Icon" class="w-8 h-8">
+        </div>
+        <div id="modeToggleSidebar" class="mode-toggle ml-4" onclick="toggleMode()">
+            <img id="modeIconSidebar" src="assets/svgs/darkmode.svg" alt="Toggle Mode" class="w-8 h-8">
+        </div>
+    </div>
+</div>
+
+<!-- Content from main.html -->
+<img id="logo" src="assets/svgs/logo.svg" alt="Logo" class="logo">
+
+<div class="sidebar fixed right-0 top-0 w-64 h-full bg-black text-white transform translate-x-full transition-transform z-40" id="sidebar">
+    <ul class="pt-16">
+        <li class="p-4"><a href="#home" data-text="Home">Home</a></li>
+        <li class="p-4"><a href="#about" data-text="About">About</a></li>
+        <li class="p-8"><a href="#support" data-text="Support">Support</a></li>
+    </ul>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

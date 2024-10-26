@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f8f8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin: 0.5em 0;
+        }
+        p {
+            font-size: 1.2em;
+            color: #666;
+            margin: 0.5em 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #ff5733;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .redirect-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 2em;
+            color: #2c3135;
+            background-color: #6f64e8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="interactiveSvg" src="assets/svgs/404.svg" alt="404 Not Found">
+        <div class="dot" id="top-left"></div>
+        <div class="dot" id="top-right"></div>
+        <div class="dot" id="bottom-left"></div>
+        <div class="dot" id="bottom-right"></div>
+        <h1>404 Not Found</h1>
+        <p>The page you are looking for does not exist.</p>
+        <button class="redirect-button" onclick="redirectToRoot()">Go to Home</button>
+    </div>
+    <script>
+        const svgElement = document.getElementById('interactiveSvg');
+
+        const dots = {
+            'top-left': document.getElementById('top-left'),
+            'top-right': document.getElementById('top-right'),
+            'bottom-left': document.getElementById('bottom-left'),
+            'bottom-right': document.getElementById('bottom-right')
+        };
+        const h1Element = document.querySelector('h1');
+        const pElement = document.querySelector('p');
+
+        function updateDots() {
+            const rect = svgElement.getBoundingClientRect();
+            dots['top-left'].style.left = `${rect.left - 6}px`;
+            dots['top-left'].style.top = `${rect.top - 6}px`;
+            dots['top-right'].style.left = `${rect.right - 6}px`;
+            dots['top-right'].style.top = `${rect.top - 6}px`;
+            dots['bottom-left'].style.left = `${rect.left - 6}px`;
+            dots['bottom-left'].style.top = `${rect.bottom - 6}px`;
+            dots['bottom-right'].style.left = `${rect.right - 6}px`;
+            dots['bottom-right'].style.top = `${rect.bottom - 6}px`;
+        }
+
+        function resizeText() {
+            const rect = svgElement.getBoundingClientRect();
+            const scaleFactor = rect.width / 600; // Assuming 600px is the original width
+            h1Element.style.fontSize = `${2.5 * scaleFactor}em`;
+            pElement.style.fontSize = `${1.2 * scaleFactor}em`;
+        }
+
+        function makeResizable(dot, onDrag) {
+            let isDragging = false;
+
+            const startDrag = () => {
+                isDragging = true;
+                document.addEventListener('mousemove', onDrag);
+                document.addEventListener('touchmove', onDrag);
+                document.addEventListener('mouseup', endDrag);
+                document.addEventListener('touchend', endDrag);
+            };
+
+            const endDrag = () => {
+                isDragging = false;
+                document.removeEventListener('mousemove', onDrag);
+                document.removeEventListener('touchmove', onDrag);
+            };
+
+            dot.addEventListener('mousedown', startDrag);
+            dot.addEventListener('touchstart', startDrag);
+        }
+
+        makeResizable(dots['top-left'], (e) => {
+            const rect = svgElement.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            svgElement.style.width = `${rect.right - clientX}px`;
+            svgElement.style.height = `${rect.bottom - clientY}px`;
+            updateDots();
+            resizeText();
+        });
+
+        makeResizable(dots['top-right'], (e) => {
+            const rect = svgElement.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            svgElement.style.width = `${clientX - rect.left}px`;
+            svgElement.style.height = `${rect.bottom - clientY}px`;
+            updateDots();
+            resizeText();
+        });
+
+        makeResizable(dots['bottom-left'], (e) => {
+            const rect = svgElement.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            svgElement.style.width = `${rect.right - clientX}px`;
+            svgElement.style.height = `${clientY - rect.top}px`;
+            updateDots();
+            resizeText();
+        });
+
+        makeResizable(dots['bottom-right'], (e) => {
+            const rect = svgElement.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            svgElement.style.width = `${clientX - rect.left}px`;
+            svgElement.style.height = `${clientY - rect.top}px`;
+            updateDots();
+            resizeText();
+        });
+
+        function redirectToRoot() {
+            window.location.href = 'index.html';
+        }
+
+        updateDots();
+        resizeText();
+        window.addEventListener('resize', () => {
+            updateDots();
+            resizeText();
+        });
+    </script>
+</body>
+</html>
