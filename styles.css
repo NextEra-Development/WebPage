@@ -1,80 +1,220 @@
-.body {
-    background-color: rgba(190, 171, 224, 1); /* Light background color */
+/* styles.css */
+
+/* Body styles */
+body {
+    background-color: #BEABE0; /* Light background color */
     color: black; /* Light text color */
     font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+    transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
 }
 
+/* Dark mode styles for body */
+body.dark-mode {
+    background-color: #2C3135; /* Dark background color */
+    color: white; /* Light text color */
+}
+
+/* Navbar styles */
 .navbar-custom {
     background-color: #564CC0; /* Light navbar color */
-    width: 100%;
-    border-radius: 50px; /* Adjust this value as needed */
-    padding: 10px 20px; /* Adjust padding to fit the new shape */
-    position: fixed; /* Change to fixed to keep it at the top */
-    top: 0; /* Ensure it stays at the top */
-    left: 0; /* Ensure it stays at the left */
+    width: 100%; /* Full width */
+    border-radius: 50px; /* Rounded corners */
+    padding: 10px 20px; /* Padding for content */
+    position: absolute; /* Absolute positioning */
+    top: 7px; /* Distance from top */
+    left: 3px; /* Distance from left */
+    right: 3px; /* Distance from right */
     z-index: 1000; /* Ensure it is above other elements */
+    transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
 }
 
+/* Dark mode styles for navbar */
+.navbar-custom.dark-mode {
+    background-color: #1F1F1F; /* Dark navbar color */
+}
+
+/* Sidebar styles */
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(44, 49, 53, 0.99); /*  opacity */
-    color: white;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 40;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    position: fixed; /* Fixed positioning */
+    top: 0; /* Distance from top */
+    left: 0; /* Distance from left */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: #BEABE0; /* Dark background color */
+    color: white; /* Light text color */
+    font-weight: 600; /* Semi-bold text for buttons */
+    transform: translateY(-100%); /* Initially hidden */
+    transition: transform 1.5s ease-in-out, background-color 1.5s ease, color 1.5s ease; /* Smooth transition for transform, background, and text color */
+    z-index: 40; /* Ensure it is above other elements */
+    display: flex; /* Flexbox layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    flex-direction: column; /* Column layout */
 }
 
+/* Active state for sidebar */
 .sidebar.active {
-    transform: translateY(0);
+    transform: translateY(0); /* Slide in */
 }
 
+/* Sidebar list styles */
 .sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
+    list-style: none; /* Remove list bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    text-align: center; /* Center text */
 }
 
+/* Sidebar list item styles */
 .sidebar li {
-    margin: 20px 0;
-    position: relative;
-}
-.sidebar a {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    color: white;
-    text-decoration: none;
-    transition: background-color 0.3s ease-in-out;
-    font-size: 1.5rem; /* Increase the font size */
+    margin: 20px 0; /* Vertical margin */
+    position: relative; /* Relative positioning */
 }
 
+/* Sidebar link styles */
+.sidebar a {
+    position: relative; /* Relative positioning */
+    display: inline-block; /* Inline block display */
+    padding: 10px 20px; /* Padding for content */
+    color: white; /* Light text color */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 2s ease-in-out; /* Smooth transition for background color */
+    font-size: 2rem; /* Large font size */
+}
+
+/* Hover effect for sidebar links */
 .sidebar a:hover {
     background-color: transparent; /* Remove background color on hover */
 }
 
+/* After pseudo-element for sidebar links */
 .sidebar a::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 100%;
-    height: 100%;
-    border-radius: 25px; /* Make the shape oval */
-    background-color: black; /* Add background color */
-    transition: transform 0.3s ease-in-out;
-    z-index: -1;
+    content: ''; /* Empty content */
+    position: absolute; /* Absolute positioning */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%) scale(0); /* Initially hidden */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    border-radius: 100px; /* Rounded corners */
+    background-color: #1F1F1F; /* Dark background color */
+    transition: transform 0.4s ease-in-out; /* Smooth transition for transform */
+    z-index: -1; /* Behind the text */
 }
 
+/* Hover effect for after pseudo-element */
 .sidebar a:hover::after {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1.2); /* Scale up */
+}
+
+/* Dark mode styles for sidebar */
+.sidebar.dark-mode {
+    background-color: #2C3135; /* Dark background color */
+}
+
+/* Company name styles */
+.company-name h1 {
+    font-size: 3rem; /* Large font size */
+    margin: 0; /* Remove margin */
+    color: white; /* Light text color */
+}
+
+/* Image styles */
+img {
+    transition: transform 6s ease, opacity 3s ease; /* Smooth transition for transform and opacity */
+}
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    display: flex; /* Flexbox layout */
+}
+
+.modal-content {
+    font-weight: 700; /* Bold text */
+    background-color: #7253da;
+    margin: auto;
+    padding: 20px;
+    border: 4px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.modal-content h2 {
+    font-weight: 700; /* Bold text */
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600; /* Semi-bold text for buttons */
+}
+
+.modal-content button:hover {
+    background-color: #27116c;
+    color: white;
+}
+/* Default styles for mobile devices */
+#logo {
+    position: absolute;
+    left: -38px;
+    top: 21px;
+    width: 783px;
+    height: 762px;
+}
+
+/* Styles for tablets and larger devices */
+@media (min-width: 768px) {
+    #logo {
+        left: -38px;
+        top: 21px;
+        width: 783px;
+        height: 762px;
+    }
+}
+
+/* Styles for laptops and larger devices */
+@media (min-width: 1024px) {
+    #logo {
+        left: -38px;
+        top: 21px;
+        width: 783px;
+        height: 762px;
+    }
+}
+
+/* Styles for desktops and larger devices */
+@media (min-width: 1200px) {
+    #logo {
+        left: -38px;
+        top: 21px;
+        width: 783px;
+        height: 762px;
+    }
+}
+
+/* Styles for TVs and larger devices */
+@media (min-width: 1920px) {
+    #logo {
+        left: -38px;
+        top: 21px;
+        width: 783px;
+        height: 762px;
+    }
 }

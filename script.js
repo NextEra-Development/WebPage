@@ -1,7 +1,11 @@
 // Get elements
 const hamburger = document.getElementById('hamburger');
 const sidebar = document.getElementById('sidebar');
-document.querySelector('.company-name img');
+const companyNameImg = document.getElementById('companyNameImg');
+const modeIconSidebar = document.getElementById('modeIconSidebar');
+const logo = document.getElementById('logo');
+const lightModeBtn = document.getElementById('lightModeBtn');
+const darkModeBtn = document.getElementById('darkModeBtn');
 let overlay;
 
 // Create overlay element
@@ -46,39 +50,67 @@ document.addEventListener('click', function(event) {
 // Add event listener to hamburger
 hamburger.addEventListener('click', toggleSidebar);
 
+// Add hover effect to sidebar links
 const sidebarLinks = document.querySelectorAll('.sidebar a');
 
 sidebarLinks.forEach(link => {
     link.addEventListener('mouseenter', () => {
-        link.classList.add('hovered');
+        document.body.classList.add('blur');
+        sidebarLinks.forEach(sibling => {
+            if (sibling !== link) {
+                sibling.style.filter = 'blur(2px)';
+            }
+        });
     });
 
     link.addEventListener('mouseleave', () => {
-        link.classList.remove('hovered');
+        document.body.classList.remove('blur');
+        sidebarLinks.forEach(sibling => {
+            sibling.style.filter = '';
+        });
     });
 });
 
+// Toggle dark mode function
 function toggleMode() {
-    const modeIconSidebar = document.getElementById('modeIconSidebar');
-    const companyNameImg = document.getElementById('companyNameImg');
-    const hamburger = document.getElementById('hamburger');
-
     document.body.classList.toggle('dark-mode');
     document.querySelector('.navbar-custom').classList.toggle('dark-mode');
     document.querySelector('.sidebar').classList.toggle('dark-mode');
 
     if (document.body.classList.contains('dark-mode')) {
-        document.body.style.backgroundColor = '#2C3135';
         companyNameImg.src = 'assets/svgs/whitenexteranametop.svg';
         hamburger.querySelector('img').src = 'assets/svgs/existhamburger.svg';
         modeIconSidebar.src = 'assets/svgs/lightmode.svg';
-        logo.src ='assets/svgs/logo-white.svg'
+        logo.src = 'assets/svgs/logo-white.svg';
+        document.body.style.backgroundColor = '#2C3135'; // Dark background color
+        sidebar.style.backgroundColor = '#2C3135'; // Dark sidebar background color
+        document.querySelector('.navbar-custom').style.backgroundColor = '#2C3135'; // Dark navbar background color
     } else {
-        document.body.style.backgroundColor = 'rgba(190, 171, 224, 0.79)';
         companyNameImg.src = 'assets/svgs/nexteranametop.svg';
         hamburger.querySelector('img').src = 'assets/svgs/hamburger.svg';
         modeIconSidebar.src = 'assets/svgs/darkmode.svg';
-        logo.src ='assets/svgs/logo.svg'
+        logo.src = 'assets/svgs/logo.svg';
+        document.body.style.backgroundColor = '#BEABE0'; // Light background color
+        sidebar.style.backgroundColor = '#BEABE0'; // Light sidebar background color
+        document.querySelector('.navbar-custom').style.backgroundColor = '#564CC0'; // Light navbar background color
     }
 }
 
+// Add event listeners to light and dark mode buttons
+lightModeBtn.addEventListener('click', function() {
+    // Keep everything as default (light mode)
+    if (document.body.classList.contains('dark-mode')) {
+        toggleMode();
+    }
+    // Close the popup
+    document.getElementById('modeModal').style.display = 'none';
+});
+
+darkModeBtn.addEventListener('click', function() {
+    // Activate dark mode
+    if (!document.body.classList.contains('dark-mode')) {
+        toggleMode();
+    }
+    // Close the popup
+    document.getElementById('modeModal').style.display = 'none';
+});

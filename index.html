@@ -1,61 +1,51 @@
-<!-- index.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextEra Development</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .company-name {
-        }
-        .navbar-custom {
-            background-color: #564CC0;
-            width: 100%;
-            border-radius: 50px; /* Adjust this value as needed */
-            padding: 10px 20px; /* Adjust padding to fit the new shape */
-            position: absolute;
-        }
-        body {
-            background-color: #BEABE0; /* Set background color */
-        }
-        .logo {
-            position: absolute;
-            width: 783px;
-            height: 762px;
-            left: -38px;
-            top: 21px;
-        }
-    </style>
-</head>
-<body class="overflow-x-hidden">
-<div class="navbar navbar-custom flex justify-between items-center shadow-md relative z-50">
-    <div class="company-name">
-        <img id="companyNameImg" src="assets/svgs/nexteranametop.svg" alt="NextEra Development" class="w-40 h-auto">
-    </div>
-    <div class="flex items-center">
-        <div class="hamburger cursor-pointer z-50" id="hamburger">
-            <img src="assets/svgs/hamburger.svg" alt="Hamburger Icon" class="w-8 h-8">
-        </div>
-        <div id="modeToggleSidebar" class="mode-toggle ml-4" onclick="toggleMode()">
-            <img id="modeIconSidebar" src="assets/svgs/darkmode.svg" alt="Toggle Mode" class="w-8 h-8">
-        </div>
+<!DOCTYPE html> <!-- Document type declaration -->
+<html lang="en"> <!-- Open HTML tag with language attribute set to English -->
+
+
+<head> <!-- Open head tag -->
+    <meta charset="UTF-8"> <!-- Character encoding declaration -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport settings for responsive design -->
+    <title>NextEra Development</title> <!-- Document title -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> <!-- Link to Tailwind CSS -->
+    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Link to custom stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> <!-- Link to Google Fonts -->
+
+
+</head> <!-- Close head tag -->
+<body class="overflow-x-hidden"> <!-- Open body tag with class to hide horizontal overflow -->
+<div class="navbar navbar-custom flex justify-between items-center shadow-md relative z-50"> <!-- Navbar container with custom styles and flexbox layout -->
+    <div class="company-name"> <!-- Company name container -->
+        <img id="companyNameImg" src="assets/svgs/nexteranametop.svg" alt="NextEra Development" class="w-40 h-auto"> <!-- Company name image with ID and classes -->
+    </div> <!-- Close company name container -->
+    <div class="flex items-center"> <!-- Container for hamburger and mode toggle with flexbox layout -->
+        <div class="hamburger cursor-pointer z-50" id="hamburger"> <!-- Hamburger menu icon container with ID and classes -->
+            <img src="assets/svgs/hamburger.svg" alt="Hamburger Icon" class="w-8 h-8"> <!-- Hamburger icon image with classes -->
+        </div> <!-- Close hamburger menu icon container -->
+        <div id="modeToggleSidebar" class="mode-toggle ml-4" onclick="toggleMode()"> <!-- Mode toggle button container with ID, classes, and click event -->
+            <img id="modeIconSidebar" src="assets/svgs/darkmode.svg" alt="Toggle Mode" class="w-8 h-8"> <!-- Mode toggle icon image with ID and classes -->
+        </div> <!-- Close mode toggle button container -->
+    </div> <!-- Close container for hamburger and mode toggle -->
+</div> <!-- Close navbar container -->
+
+<div id="modeModal" class="modal">
+    <div class="modal-content">
+        <h2>Which Theme do you Prefer?</h2>
+        <button id="lightModeBtn">Light</button>
+        <button id="darkModeBtn">Dark</button>
     </div>
 </div>
 
 <!-- Content from main.html -->
-<img id="logo" src="assets/svgs/logo.svg" alt="Logo" class="logo">
+<img id="logo" src="assets/svgs/logo.svg" alt="Logo" class="logo"> <!-- Logo image with ID and class -->
 
-<div class="sidebar fixed right-0 top-0 w-64 h-full bg-black text-white transform translate-x-full transition-transform z-40" id="sidebar">
-    <ul class="pt-16">
-        <li class="p-4"><a href="#home" data-text="Home">Home</a></li>
-        <li class="p-4"><a href="#about" data-text="About">About</a></li>
-        <li class="p-8"><a href="#support" data-text="Support">Support</a></li>
-    </ul>
-</div>
+<div class="sidebar" id="sidebar"> <!-- Sidebar container with ID and class -->
+    <ul class="pt-16"> <!-- Unordered list with padding-top class -->
+        <li class="p-4"><a href="#home" data-text="Home">Home</a></li> <!-- List item with padding and link to home section -->
+        <li class="p-4"><a href="#about" data-text="About">About</a></li> <!-- List item with padding and link to about section -->
+        <li class="p-8"><a href="#support" data-text="Support">Support</a></li> <!-- List item with padding and link to support section -->
+    </ul> <!-- Close unordered list -->
+</div> <!-- Close sidebar container -->
 
-<script src="script.js"></script>
-</body>
-</html>
+<script src="script.js"></script> <!-- Link to external JavaScript file -->
+</body> <!-- Close body tag -->
+</html> <!-- Close HTML tag -->
