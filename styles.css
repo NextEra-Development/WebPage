@@ -1,17 +1,28 @@
-/* styles.css */
+/* General styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
 
-/* Body styles */
 body {
+    flex: 1;
     background-color: #BEABE0; /* Light background color */
     color: black; /* Light text color */
     font-family: 'Poppins', sans-serif; /* Apply Poppins font */
     transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
 }
 
-/* Dark mode styles for body */
 body.dark-mode {
-    background-color: #2C3135; /* Dark background color */
+    background-color: #3a3c3f; /* Dark background color */
     color: white; /* Light text color */
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+    transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
+}
+
+.main-content {
+    flex: 1;
 }
 
 /* Navbar styles */
@@ -26,11 +37,12 @@ body.dark-mode {
     right: 3px; /* Distance from right */
     z-index: 1000; /* Ensure it is above other elements */
     transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
+    border: 1px solid #4b4b4b; /* Dark border */
 }
 
-/* Dark mode styles for navbar */
 .navbar-custom.dark-mode {
-    background-color: #1F1F1F; /* Dark navbar color */
+    background-color: #000000; /* Dark navbar color */
+    border: 1px solid #9d9d9d; /* Dark border */
 }
 
 /* Sidebar styles */
@@ -40,8 +52,8 @@ body.dark-mode {
     left: 0; /* Distance from left */
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    background-color: #BEABE0; /* Dark background color */
-    color: white; /* Light text color */
+    background-color: #8776b2; /* Light background color */
+    color: #9d9d9d; /* Light text color */
     font-weight: 600; /* Semi-bold text for buttons */
     transform: translateY(-100%); /* Initially hidden */
     transition: transform 1.5s ease-in-out, background-color 1.5s ease, color 1.5s ease; /* Smooth transition for transform, background, and text color */
@@ -52,12 +64,10 @@ body.dark-mode {
     flex-direction: column; /* Column layout */
 }
 
-/* Active state for sidebar */
 .sidebar.active {
     transform: translateY(0); /* Slide in */
 }
 
-/* Sidebar list styles */
 .sidebar ul {
     list-style: none; /* Remove list bullets */
     padding: 0; /* Remove padding */
@@ -65,29 +75,26 @@ body.dark-mode {
     text-align: center; /* Center text */
 }
 
-/* Sidebar list item styles */
 .sidebar li {
     margin: 20px 0; /* Vertical margin */
     position: relative; /* Relative positioning */
 }
 
-/* Sidebar link styles */
 .sidebar a {
     position: relative; /* Relative positioning */
     display: inline-block; /* Inline block display */
     padding: 10px 20px; /* Padding for content */
-    color: white; /* Light text color */
+    color: #000000; /* Light text color */
     text-decoration: none; /* Remove underline */
     transition: background-color 2s ease-in-out; /* Smooth transition for background color */
     font-size: 2rem; /* Large font size */
 }
 
-/* Hover effect for sidebar links */
 .sidebar a:hover {
     background-color: transparent; /* Remove background color on hover */
+    color: #ffffff; /* Light text color */
 }
 
-/* After pseudo-element for sidebar links */
 .sidebar a::after {
     content: ''; /* Empty content */
     position: absolute; /* Absolute positioning */
@@ -102,12 +109,10 @@ body.dark-mode {
     z-index: -1; /* Behind the text */
 }
 
-/* Hover effect for after pseudo-element */
 .sidebar a:hover::after {
     transform: translate(-50%, -50%) scale(1.2); /* Scale up */
 }
 
-/* Dark mode styles for sidebar */
 .sidebar.dark-mode {
     background-color: #2C3135; /* Dark background color */
 }
@@ -123,53 +128,7 @@ body.dark-mode {
 img {
     transition: transform 6s ease, opacity 3s ease; /* Smooth transition for transform and opacity */
 }
-/* Modal styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    display: flex; /* Flexbox layout */
-}
 
-.modal-content {
-    font-weight: 700; /* Bold text */
-    background-color: #7253da;
-    margin: auto;
-    padding: 20px;
-    border: 4px solid #888;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-    border-radius: 10px;
-}
-
-.modal-content h2 {
-    font-weight: 700; /* Bold text */
-    margin-bottom: 20px;
-}
-
-.modal-content button {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600; /* Semi-bold text for buttons */
-}
-
-.modal-content button:hover {
-    background-color: #27116c;
-    color: white;
-}
 /* Default styles for mobile devices */
 #logo {
     position: absolute;
@@ -217,4 +176,696 @@ img {
         width: 783px;
         height: 762px;
     }
+}
+
+/* Tooltip styles */
+.tooltip {
+    position: absolute;
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Light text color */
+    padding: 5px 10px; /* Padding for content */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Font size */
+    display: none; /* Initially hidden */
+    z-index: 1001; /* Ensure it is above other elements */
+    pointer-events: none; /* Prevent mouse events */
+    transition: opacity 1s; /* Smooth transition for opacity */
+}
+
+.tooltip.show {
+    display: block; /* Show tooltip */
+    opacity: 1; /* Fully opaque */
+}
+
+/* Footer styles */
+.footer {
+    background-color: #C3C5C7FF; /* Dark mode footer color */
+    color: #888888; /* Dimmed text color */
+    border-top: 1px solid #242525; /* Top border */
+    transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
+}
+
+.footer.dark-mode {
+    background-color: #333; /* Dark background color */
+    color: #888888; /* Dimmed text color */
+    border-top: 1px solid #e9ecef; /* Top border */
+    transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
+}
+
+.footer a {
+    color: #5148e1; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.footer a:hover {
+    color: #150641; /* Darker color on hover */
+}
+
+.tooltip-container {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 17px;
+  border-radius: 10px;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  border-radius: 15px;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+  background-color: #000000; /* Black background color */
+  color: #ffffff; /* White text color */
+}
+
+.tooltip-container:hover .tooltip {
+  bottom: 120%; /* Adjust distance above the icon */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.profile {
+  background: #2a2b2f;
+  border-radius: 10px 15px;
+  padding: 10px;
+  border: 1px solid rgb(29, 64, 178);
+}
+
+.icon {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  position: relative;
+}
+
+.layer {
+  width: 55px;
+  height: 55px;
+  transition: transform 0.3s;
+}
+
+.icon:hover .layer {
+  transform: rotate(-35deg) skew(20deg);
+}
+
+.layer span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.layer span,
+.text {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.icon:hover.layer span {
+  box-shadow: -1px 1px 3px #4b4949;
+}
+
+.icon .text {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  opacity: 0;
+  font-weight: 500;
+  transform: translateX(-50%);
+  transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+
+.icon:hover .text {
+  bottom: -35px;
+  opacity: 1;
+}
+
+.icon:hover .layer span:nth-child(1) {
+  opacity: 0.2;
+}
+
+.icon:hover .layer span:nth-child(2) {
+  opacity: 0.4;
+  transform: translate(5px, -5px);
+}
+
+.icon:hover .layer span:nth-child(3) {
+  opacity: 0.6;
+  transform: translate(10px, -10px);
+}
+
+.icon:hover .layer span:nth-child(4) {
+  opacity: 0.8;
+  transform: translate(15px, -15px);
+}
+
+.icon:hover .layer span:nth-child(5) {
+  opacity: 1;
+  transform: translate(20px, -20px);
+}
+
+.layer span.fab {
+  font-size: 30px;
+  line-height: 64px;
+  text-align: center;
+  fill: #b0bbc2;
+  background: #000;
+}
+
+.user {
+  display: flex;
+  gap: 10px;
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  font-weight: 700;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #030303;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  color: #fff;
+}
+
+.about {
+  color: #ccc;
+  padding-top: 5px;
+}
+.tooltip-container {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 17px;
+  border-radius: 10px;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  border-radius: 15px;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+  background-color: #000000; /* Black background color */
+  color: #ffffff; /* White text color */
+}
+
+.tooltip-container:hover .tooltip {
+  bottom: 120%; /* Adjust distance above the icon */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.icon {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  position: relative;
+}
+
+.layer {
+  width: 55px;
+  height: 55px;
+  transition: transform 0.3s;
+}
+
+.icon:hover .layer {
+  transform: rotate(-35deg) skew(20deg);
+}
+
+.layer span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.layer span,
+.text {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.icon:hover.layer span {
+  box-shadow: -1px 1px 3px #4b4949;
+}
+
+.icon .text {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  opacity: 0;
+  font-weight: 500;
+  transform: translateX(-50%);
+  transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+
+.icon:hover .text {
+  bottom: -35px;
+  opacity: 1;
+}
+
+.icon:hover .layer span:nth-child(1) {
+  opacity: 0.2;
+}
+
+.icon:hover .layer span:nth-child(2) {
+  opacity: 0.4;
+  transform: translate(5px, -5px);
+}
+
+.icon:hover .layer span:nth-child(3) {
+  opacity: 0.6;
+  transform: translate(10px, -10px);
+}
+
+.icon:hover .layer span:nth-child(4) {
+  opacity: 0.8;
+  transform: translate(15px, -15px);
+}
+
+.icon:hover .layer span:nth-child(5) {
+  opacity: 1;
+  transform: translate(20px, -20px);
+}/* General styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    flex: 1;
+    background-color: #BEABE0; /* Light background color */
+    color: black; /* Light text color */
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+    transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
+}
+
+body.dark-mode {
+    background-color: #3a3c3f; /* Dark background color */
+    color: white; /* Light text color */
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+    transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* Navbar styles */
+.navbar-custom {
+    background-color: #564CC0; /* Light navbar color */
+    width: 100%; /* Full width */
+    border-radius: 50px; /* Rounded corners */
+    padding: 10px 20px; /* Padding for content */
+    position: absolute; /* Absolute positioning */
+    top: 7px; /* Distance from top */
+    left: 3px; /* Distance from left */
+    right: 3px; /* Distance from right */
+    z-index: 1000; /* Ensure it is above other elements */
+    transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
+    border: 1px solid #4b4b4b; /* Dark border */
+}
+
+.navbar-custom.dark-mode {
+    background-color: #000000; /* Dark navbar color */
+    border: 1px solid #9d9d9d; /* Dark border */
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed; /* Fixed positioning */
+    top: 0; /* Distance from top */
+    left: 0; /* Distance from left */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: #8776b2; /* Light background color */
+    color: #9d9d9d; /* Light text color */
+    font-weight: 600; /* Semi-bold text for buttons */
+    transform: translateY(-100%); /* Initially hidden */
+    transition: transform 1.5s ease-in-out, background-color 1.5s ease, color 1.5s ease; /* Smooth transition for transform, background, and text color */
+    z-index: 40; /* Ensure it is above other elements */
+    display: flex; /* Flexbox layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    flex-direction: column; /* Column layout */
+}
+
+.sidebar.active {
+    transform: translateY(0); /* Slide in */
+}
+
+.sidebar ul {
+    list-style: none; /* Remove list bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    text-align: center; /* Center text */
+}
+
+.sidebar li {
+    margin: 20px 0; /* Vertical margin */
+    position: relative; /* Relative positioning */
+}
+
+.sidebar a {
+    position: relative; /* Relative positioning */
+    display: inline-block; /* Inline block display */
+    padding: 10px 20px; /* Padding for content */
+    color: #000000; /* Light text color */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 2s ease-in-out; /* Smooth transition for background color */
+    font-size: 2rem; /* Large font size */
+}
+
+.sidebar a:hover {
+    background-color: transparent; /* Remove background color on hover */
+    color: #ffffff; /* Light text color */
+}
+
+.sidebar a::after {
+    content: ''; /* Empty content */
+    position: absolute; /* Absolute positioning */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%) scale(0); /* Initially hidden */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    border-radius: 100px; /* Rounded corners */
+    background-color: #1F1F1F; /* Dark background color */
+    transition: transform 0.4s ease-in-out; /* Smooth transition for transform */
+    z-index: -1; /* Behind the text */
+}
+
+.sidebar a:hover::after {
+    transform: translate(-50%, -50%) scale(1.2); /* Scale up */
+}
+
+.sidebar.dark-mode {
+    background-color: #2C3135; /* Dark background color */
+}
+
+/* Company name styles */
+.company-name h1 {
+    font-size: 3rem; /* Large font size */
+    margin: 0; /* Remove margin */
+    color: white; /* Light text color */
+}
+
+/* Image styles */
+img {
+    transition: transform 6s ease, opacity 3s ease; /* Smooth transition for transform and opacity */
+}
+
+/* Default styles for mobile devices */
+#logo {
+    position: absolute;
+    left: -38px;
+    top: 21px;
+    width: 783px;
+    height: 762px;
+}
+
+/* Styles for tablets and larger devices */
+@media (min-width: 768px) {
+    #logo {
+        left: -38px;
+        top: 21px;
+        width: 783px;
+        height: 762px;
+    }
+}
+
+/* Styles for laptops and larger devices */
+@media (min-width: 1024px) {
+    #logo {
+        left: -38px;
+        top: 21px;
+        width: 783px;
+        height: 762px;
+    }
+}
+
+/* Styles for desktops and larger devices */
+@media (min-width: 1200px) {
+    #logo {
+        left: -38px;
+        top: 21px;
+        width: 783px;
+        height: 762px;
+    }
+}
+
+/* Styles for TVs and larger devices */
+@media (min-width: 1920px) {
+    #logo {
+        left: -38px;
+        top: 21px;
+        width: 783px;
+        height: 762px;
+    }
+}
+
+/* Tooltip styles */
+.tooltip {
+    position: absolute;
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Light text color */
+    padding: 5px 10px; /* Padding for content */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Font size */
+    display: none; /* Initially hidden */
+    z-index: 1001; /* Ensure it is above other elements */
+    pointer-events: none; /* Prevent mouse events */
+    transition: opacity 1s; /* Smooth transition for opacity */
+}
+
+.tooltip.show {
+    display: block; /* Show tooltip */
+    opacity: 1; /* Fully opaque */
+}
+
+/* Footer styles */
+.footer {
+    background-color: #C3C5C7FF; /* Dark mode footer color */
+    color: #888888; /* Dimmed text color */
+    border-top: 1px solid #242525; /* Top border */
+    transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
+}
+
+.footer.dark-mode {
+    background-color: #333; /* Dark background color */
+    color: #888888; /* Dimmed text color */
+    border-top: 1px solid #e9ecef; /* Top border */
+    transition: background-color 3s ease, color 3s ease; /* Smooth transition for background and text color */
+}
+
+.footer a {
+    color: #5148e1; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.footer a:hover {
+    color: #150641; /* Darker color on hover */
+}
+
+.tooltip-container {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 17px;
+  border-radius: 10px;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  border-radius: 15px;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+  background-color: #000000; /* Black background color */
+  color: #ffffff; /* White text color */
+}
+
+.tooltip-container:hover .tooltip {
+  bottom: 120%; /* Adjust distance above the icon */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.profile {
+  background: #2a2b2f;
+  border-radius: 10px 15px;
+  padding: 10px;
+  border: 1px solid rgb(29, 64, 178);
+}
+
+.icon {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  position: relative;
+}
+
+.layer {
+  width: 55px;
+  height: 55px;
+  transition: transform 0.3s;
+}
+
+.icon:hover .layer {
+  transform: rotate(-35deg) skew(20deg);
+}
+
+.layer span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.layer span,
+.text {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.icon:hover.layer span {
+  box-shadow: -1px 1px 3px #4b4949;
+}
+
+.icon .text {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  opacity: 0;
+  font-weight: 500;
+  transform: translateX(-50%);
+  transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+
+.icon:hover .text {
+  bottom: -35px;
+  opacity: 1;
+}
+
+.icon:hover .layer span:nth-child(1) {
+  opacity: 0.2;
+}
+
+.icon:hover .layer span:nth-child(2) {
+  opacity: 0.4;
+  transform: translate(5px, -5px);
+}
+
+.icon:hover .layer span:nth-child(3) {
+  opacity: 0.6;
+  transform: translate(10px, -10px);
+}
+
+.icon:hover .layer span:nth-child(4) {
+  opacity: 0.8;
+  transform: translate(15px, -15px);
+}
+
+.icon:hover .layer span:nth-child(5) {
+  opacity: 1;
+  transform: translate(20px, -20px);
+}
+
+.layer span.fab {
+  font-size: 30px;
+  line-height: 64px;
+  text-align: center;
+  fill: #b0bbc2;
+  background: #000;
+}
+
+.user {
+  display: flex;
+  gap: 10px;
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  font-weight: 700;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #030303;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  color: #fff;
+}
+
+.about {
+  color: #ccc;
+  padding-top: 5px;
 }
